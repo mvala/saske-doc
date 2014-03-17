@@ -1,0 +1,182 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SASKE_Users_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-Documentation-SASKE_Users_Guide-LXPLUS">
+  <title>LXPLUS</title>
+  <para>
+    LXPLUS (Public Login User Service) is the interactive logon service to Linux for all SASKE users, based on LXPLUS at CERN. The cluster LXPLUS consists of public machines provided by the IT Department for interactive work.
+  </para>
+  <section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Conecting_To_Lxplus">
+    <title>Using LXPLUS machines</title>
+    <para>
+      To connect to interactive cluster LXPLUS you can use <command>ssh</command> command from <replaceable>openssh</replaceable> package.
+      And it id done with following syntax:
+    </para>
+<screen>
+ssh <replaceable>&lt;username&gt;</replaceable>@lxplus.saske.sk
+</screen>
+<para>
+  where each ach users should substitute <replaceable>&lt;username&gt;</replaceable> by it's own username. 
+  For example for <replaceable>mvala</replaceable>. User name is same as you use for your mail
+  located at <ulink url="http://home.saske.sk">home.saske.sk</ulink>
+</para>
+<warning>
+  <title>Password warning</title>
+  <para>LXPLUS password with is not synchronized with password in mail. You have to use password which was initially set by admin or changed via 
+    web interface located <ulink url="https://kdc1.saske.sk">here</ulink>. If you have any problem, please contact admin (<email>mvala@saske.sk</email>)
+  </para>
+      </warning>
+      <para>
+        For example user <replaceable>mvala</replaceable> would connect with follwing command.
+      </para>
+<screen>
+ssh <replaceable>mvala</replaceable>@lxplus.saske.sk
+</screen>
+</section>
+<section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Changing_Password">
+  <title>Changing password</title>
+  <para>
+    User can change password from lxplus mahine using <command>kpasswd</command>
+  </para>
+<screen>
+[mvala@lx000 ~]$ kpasswd 
+Password for mvala@SASKE.SK: 
+Enter new password: 
+Enter it again: 
+Password changed.
+</screen>
+<para>
+  or using web interface located <ulink url="https://kdc1.saske.sk">here</ulink>.
+</para>
+</section>
+<section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Running_CERN_software">
+  <title>Running CERN software on LXPLUS</title>
+  <para>
+    LXPLUS machines have installed ALICE and ATLAS software via CVMFS.
+  </para>
+  <section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Running_ALICE_software">
+    <title>ALICE software</title>
+    <para>
+      ALICE software is enabled by command <command>alienv</command>. By default alienv is not in $PATH, so user has to setup 
+      variable via <command>source</command> . And it is done via
+    </para>
+    <screen>[mvala@lx000 ~]$ source /cvmfs/alice.cern.ch/etc/login.sh</screen>
+    <note>
+      <para>
+        One can put previous line in $HOME/.bashrc and it will run everytime you login automaticaly. 
+        This can be done when you execute only once following command
+        <screen>echo "source /cvmfs/alice.cern.ch/etc/login.sh" >> $HOME/.bashrc</screen>
+      </para>
+    </note>
+    <para>
+      Now we have <command>alienv</command> command. One can check that via <command>which</command> command. Your output has to be same as here.
+      If not than one probobably didn't setup ALICE enviroment variables.
+      </para>
+      <screen>[mvala@lx000 ~]$ which alienv
+/cvmfs/alice.cern.ch/bin/alienv
+[mvala@lx000 ~]$</screen>
+<para>
+  Now we can start aliroot or root command via following syntax:
+      <screen>[mvala@lx000 ~]$ alienv setenv <replaceable>&lt;package&gt;</replaceable> -c <replaceable>&lt;command&gt;</replaceable> <replaceable>&lt;arg1 arg2 ... argN&gt;</replaceable></screen>
+  <important>
+    <para>
+      First execution of application can take while, because it is downloaded ondemand. Next execution of same application will be fast when 
+      user will run it for second time.
+    </para>
+  </important>
+  For example to enable latest version of aliroot one should do
+  <screen>[mvala@lx000 ~]$ alienv setenv AliRoot -c aliroot -q
+Warning in &lt;TUnixSystem::SetDisplay&gt;: DISPLAY not set, setting it to sara.saske.sk:0.0
+  *******************************************
+  *                                         *
+  *        W E L C O M E  to  R O O T       *
+  *                                         *
+  *   Version   5.34/08       31 May 2013   *
+  *                                         *
+  *  You are welcome to visit our Web site  *
+  *          http://root.cern.ch            *
+  *                                         *
+  *******************************************
+
+ROOT 5.34/08 (v5-34-08@v5-34-08, Feb 17 2014, 18:00:58 on linuxx8664gcc)
+
+CINT/ROOT C/C++ Interpreter version 5.18.00, July 2, 2010
+Type ? for help. Commands must be C++ statements.
+Enclose multiple statements between { }.
+root [0]
+</screen>
+  To see all available version one can use following command
+  <screen>[mvala@lx000 ~]$ alienv avail
+------------------------------------------------------------------- /cvmfs/alice.cern.ch/x86_64-2.6-gnu-4.1.2/Modules/modulefiles --------------------------------------------------------------------
+AliEn/v2-19-217          AliRoot/v5-04-09-AN      AliRoot/v5-04-46-AN      AliRoot/v5-04-Rev-02     AliRoot/v5-05-14-AN      AliRoot/v5-05-49-AN      eos/0-2-31
+AliEn/v2-19-218          AliRoot/v5-04-10-AN      AliRoot/v5-04-47-AN      AliRoot/v5-04-Rev-03     AliRoot/v5-05-15-AN      AliRoot/v5-05-50-AN      fastjet/v2.4.2
+AliEn/v2-19-223          AliRoot/v5-04-11-AN      AliRoot/v5-04-48-AN      AliRoot/v5-04-Rev-04     AliRoot/v5-05-15-AN-1    AliRoot/v5-05-51-AN      fastjet/v3.0.3
+AliRoot/v5-01-Rev-32d    AliRoot/v5-04-12-AN      AliRoot/v5-04-49-AN      AliRoot/v5-04-Rev-05     AliRoot/v5-05-16-AN      AliRoot/v5-05-52-AN      GEANT3/v1-14
+AliRoot/v5-01-Rev-32e    AliRoot/v5-04-14-AN      AliRoot/v5-04-50-AN      AliRoot/v5-04-Rev-06     AliRoot/v5-05-17-AN      AliRoot/v5-05-53-AN      GEANT3/v1-14-2
+...
+...
+...
+------------------------------------------------------------------- /cvmfs/alice.cern.ch/x86_64-2.6-gnu-4.7.2/Modules/modulefiles --------------------------------------------------------------------
+AliRoot/v5-04-Rev-09-1 fluka_vmc/v0-7-1       GEANT3/v1-15a-2        ROOT/v5-34-08-1
+</screen>
+To run specific verion (eg. AliRoot/v5-05-53-AN) one should do
+
+<screen>[mvala@lx000 ~]$ alienv setenv AliRoot/v5-05-53-AN -c aliroot -q</screen>
+<note>
+  <title>Packages dependency</title>
+  <para>
+    Note that packages dependency are set automaticaly. So one can request <application>AliRoot</application> package which 
+    is setting up <application>AliEn</application> and one can execute <command>alien-token-init</command> for example. 
+  </para>
+</note>
+and here it is in action
+</para>
+<screen>[mvala@lx000 ~]$ alienv setenv AliRoot -c alien-token-init
+---------------------------------------------------------------
+Setting central config:
+===============================================================
+export alien_API_SERVER_LIST="pcapiserv03.cern.ch:10000|"
+export TERMINFO=/usr/share/terminfo
+===============================================================
+---------------------------------------------------------------
+Setting closest site to: Kosice
+===============================================================
+Using X509_CERT_DIR=/cvmfs/alice.cern.ch/x86_64-2.6-gnu-4.1.2/Packages/AliEn/v2-19-223/globus/share/certificates
+*********************************************************************************
+Attention: You don't have a valid grid proxy ( or less than 1 hour left ) - doing xrdgsiproxy init for you ...
+*********************************************************************************
+Enter PEM pass phrase:
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+file        : /tmp/x509up_u10509
+issuer      : /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=mvala/CN=665743/CN=Martin Vala
+subject     : /DC=ch/DC=cern/OU=Organic Units/OU=Users/CN=mvala/CN=665743/CN=Martin Vala/CN=382096358
+path length : 0
+bits        : 512
+time left   : 13h:0m:0s
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+=> Trying to connect to Server [0] root://pcapiserv03.cern.ch:10000 as User mvala 
+/alice/cern.ch/user/s/spochybo/HMPID/ESD_v5-05-35-AN/pp/7TeV/data/LHC10c.pass3/
+/alice/cern.ch/user/m/mvala/
+MONALISA_NAME="LCG"
+MONALISA_LOCATION="Kosice"
+MONALISA_COUNTRY="Slovakia"
+MONALISA_JAVAOPTS="-Xms1024m -Xmx1024m"
+MONALISA_OU="LCG"
+MONALISA_DOMAIN="saske.sk"
+MONALISA_SHOULDUPDATE="false"
+MONALISA_ADMINISTRATOR="Ingrid.Kulkova@cern.ch,Miloslav.Straka@cern.ch,Janka.Vrlakova@cern.ch"
+MONALISA_HOST="vobox2-iep-grid.saske.sk"
+APMON_CONFIG=vobox2-iep-grid.saske.sk
+Your identity: mvala
+Creating token ..................................... Done
+Your token is valid until: Fri Mar 14 08:39:47 2014
+</screen>
+  <para>
+    Now user should be able to run any ALICE software on LXPLUS machines.
+  </para>
+</section>
+</section>
+</chapter>
+

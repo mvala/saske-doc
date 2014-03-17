@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SASKE_Users_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-Documentation-SASKE_Users_Guide-LXPLUS">
+	<title>LXPLUS</title>
+	<para>
+		LXPLUS (Public Login User Service) is the interactive logon service to Linux for all SASKE users, based on LXPLUS at CERN. The cluster LXPLUS consists of public machines provided by the IT Department for interactive work.
+	</para>
+	<section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Conecting_To_Lxplus">
+		<title>Using LXPLUS machines</title>
+		<para>
+         To connect to interactive cluster LXPLUS you can use <command>ssh</command> command from <replaceable>openssh</replaceable> package.
+         And it id done with following syntax:
+		</para>
+<screen>
+ssh <replaceable>&lt;username&gt;</replaceable>@lxplus.saske.sk
+</screen>
+      <para>
+         where each ach users should substitute <replaceable>&lt;username&gt;</replaceable> by it's own username. 
+         For example for <replaceable>mvala</replaceable>. User name is same as you use for your mail
+         located at <ulink url="http://home.saske.sk">home.saske.sk</ulink>
+      </para>
+      <warning>
+         <title>Password warning</title>
+         <para>LXPLUS password with is not synchronized with password in mail. You have to use password which was initially set by admin or changed via 
+            web interface located <ulink url="https://kdc1.saske.sk">here</ulink>. If you have any problem, please contact admin (<email>mvala@saske.sk</email>)
+         </para>
+      </warning>
+      <para>
+         For example user <replaceable>mvala</replaceable> would connect with follwing command.
+      </para>
+<screen>
+ssh <replaceable>mvala</replaceable>@lxplus.saske.sk
+</screen>
+   </section>
+   <section id="sect-Documentation-SASKE_Users_Guide-LXPLUS-Changing_Password">
+      <title>Changing password</title>
+      <para>
+         User can change password from lxplus mahine using <command>kpasswd</command>
+      </para>
+<screen>
+[mvala@lx000 ~]$ kpasswd 
+Password for mvala@SASKE.SK: 
+Enter new password: 
+Enter it again: 
+Password changed.
+</screen>
+      <para>
+         or using web interface located <ulink url="https://kdc1.saske.sk">here</ulink>.
+      </para>
+   </section>
+</chapter>
+

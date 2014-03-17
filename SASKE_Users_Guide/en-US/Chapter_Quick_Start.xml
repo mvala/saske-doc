@@ -1,0 +1,160 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SASKE_Users_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-Documentation-SASKE_Users_Guide-Quick-Start">
+  <title>Quick start</title>
+
+  <para>
+    This chapert should give day to day tutorial how to work with SASKE LXPLUS interactive system.
+  </para>
+  
+  <section id="chap-Documentation-SASKE_Users_Guide-Quick-Start-Conecting_To_Lxplus">
+    <title>Using LXPLUS machines</title>
+    <para> Let's start with connecting to LXPLUS. 
+      Connection to SASKE LXPLUS is done via <command>ssh</command>.
+    </para>
+  <note>
+    <para>
+      We assume that you are using operating system with <application>openssh</application> package installed on your laptop (desktop).
+    </para>
+  </note>
+  <para>
+    Connection is done via following syntax:
+  </para>
+  <screen>
+ssh <replaceable>&lt;username&gt;</replaceable>@lxplus.saske.sk
+  </screen>
+  <para>
+    for example <replaceable>mvala</replaceable> user should connect as 
+  </para>
+    <screen>
+ssh <replaceable>mvala</replaceable>@lxplus.saske.sk
+  </screen>
+  <note>
+    <para>
+      One should use password which is managed by our authethification system using web page <ulink url="https://kdc1.saske.sk">here</ulink>.
+      One should be able to login to that web page and change password there if needed.
+    </para>
+  </note>
+  <para>
+    after successfull login you should be able to see following
+  </para>
+  <screen>
+mvala@vala ~ $ ssh mvala@lxplus.saske.sk
+mvala@lxplus.saske.sk's password: 
+Last login: Tue Mar 11 14:19:00 2014 from sara.saske.sk
+[mvala@lx000 ~]$ 
+</screen>
+  <para>
+    Voila and now you should be able to run any liunx commands like <command>ls</command>, <command>mkdir</command>, <command>df</command> and so.
+  </para>
+  </section>
+    <section id="chap-Documentation-SASKE_Users_Guide-Quick-Start-Using-EOS">
+    <title>Using EOS storage filesystem</title>
+  <para>
+    While still connected to LXPLUS machine one can see output for disk space information using <command>df</command>. 
+    Output on screen should look like:
+  </para>
+  <screen>
+[mvala@lx000 ~]$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2       1.7T  1.8G  1.6T   1% /
+tmpfs           3.8G     0  3.8G   0% /dev/shm
+/dev/sda1        97G  537M   91G   1% /var/cache/cvmfs2
+eosmain          15T  392G   14T   3% /eos
+</screen>
+  <para>
+    One can see that we have available space on <replaceable>/</replaceable> patrtition arount 1.6 TB (trea bytes) 
+    and around 14 TB space on <replaceable>/eos</replaceable> partition. We recommend that you will user <replaceable>/eos</replaceable> 
+    directory as your storage of you data (documents). Every users has its own directory which is located at 
+    <replaceable>/eos/saske.sk/users/&lt;firs letter of username&gt;/&lt;username&gt;</replaceable>. For example for <replaceable>mvala</replaceable> user
+    it would be <replaceable>/eos/saske.sk/users/m/mvala</replaceable>. Using command <command>ls</command> we can see content of direcotry. 
+    Following output show content of mvala's directory at EOS storage. 
+  </para>
+  <screen>
+[mvala@lx000 ~]$ ls -al /eos/saske.sk/users/m/mvala
+total 94
+drwx------ 22 mvala mvala    12 Mar 10 19:08 .
+drwxr-xr-x  3 root  root      2 Apr  9  2013 ..
+</screen>
+  <para>
+  and as one can see direcotry is empty. So let's create some direcotries and 
+  copy some files there using linux commands  <command>mkdir</command> and <command>cp</command>.
+  </para>
+  <important>
+    <para>
+      It is important that you substitute <replaceable>mvala</replaceable> username by yours.
+    </para>
+    <para>So if your username is <replaceable>jozko</replaceable> then eos directory will be <replaceable>/eos/saske.sk/users/j/jozko/Test</replaceable>
+    </para>
+    </important>
+    <programlistingco>
+      <areaspec>
+        <area id="eos.ex.1" coords='1'/>
+        <area id="eos.ex.2" coords='2'/>
+        <area id="eos.ex.3" coords='3'/>
+        <area id="eos.ex.4" coords='4'/>
+        <area id="eos.ex.5" coords='5 6'/>
+        <area id="eos.ex.6" coords='7 8'/>
+</areaspec>
+<programlisting>[mvala@lx000 saske.sk]$ mkdir /eos/saske.sk/users/m/mvala/Test
+[mvala@lx000 saske.sk]$ cd /eos/saske.sk/users/m/mvala/Test
+[mvala@lx000 Test]$ echo "My text" > /tmp/test.txt
+[mvala@lx000 Test]$ cp /tmp/test.txt /eos/saske.sk/users/m/mvala/Test/
+[mvala@lx000 Test]$ ls -al /eos/saske.sk/users/m/mvala/Test/test.txt
+-rw-r--r-- 2 mvala mvala 8 Mar 11 14:53 /eos/saske.sk/users/m/mvala/Test/test.txt
+[mvala@lx000 Test]$ cat /eos/saske.sk/users/m/mvala/Test/test.txt
+My text
+[mvala@lx000 Test]$ 
+</programlisting>
+<calloutlist>
+<callout arearefs="eos.ex.1">
+<para>
+Creating directory <replaceable>/eos/saske.sk/users/m/mvala/Test</replaceable>
+</para>
+</callout>
+<callout arearefs="eos.ex.2">
+<para>
+Entering directory <replaceable>/eos/saske.sk/users/m/mvala/Test</replaceable>
+</para>
+</callout>
+<callout arearefs="eos.ex.3">
+<para>
+Creating temporary file <replaceable>/tmp/test.txt</replaceable> with conetent "My Text" 
+(this is linux syntax to redirect some text to file)
+</para>
+</callout>
+<callout arearefs="eos.ex.4">
+<para>
+Copying file <replaceable>/tmp/test.txt</replaceable> to <replaceable>/eos/saske.sk/users/m/mvala/Test/</replaceable>
+</para>
+</callout>
+<callout arearefs="eos.ex.5">
+<para>
+Listing content of diretory <replaceable>/eos/saske.sk/users/m/mvala/Test/</replaceable>. And we see that there is file 
+<replaceable>test.txt</replaceable>
+</para>
+</callout>
+<callout arearefs="eos.ex.6">
+<para>
+  Using <command>cat</command> one can see content of newly created file. 
+</para>
+</callout>
+</calloutlist>
+</programlistingco>
+<para>Nice thing about eos storage sytem is that one should be able to see file via web page and download it using web browser.
+  Let's start by seeing content of our directory via web browswer. It is very easy to do. One just need to put in web browser follwing link.
+  Structure of link is following. <replaceable>https://eos.saske.sk:8443/&lt;eos full path &gt;</replaceable> . Here is example for user mvala 
+  <ulink url="https://eos.saske.sk:8443/eos/saske.sk/users/m/mvala/Test/test.txt">https://eos.saske.sk:8443/eos/saske.sk/users/m/mvala/Test/test.txt</ulink> .
+  Then login with own username and one should be able to download it.
+  </para>
+  <para>
+    And that's it for quick start. 
+    </para>
+    <para>
+      One should be able to connect to SASKE LXPLUS and use EOS storage using SASKE LXPLUS machines.
+  </para>
+  </section>
+</chapter>
