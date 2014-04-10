@@ -5,7 +5,8 @@
 ]>
 <book>
   <xi:include href="Book_Info.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
-<!--   <xi:include href="Preface.xml" xmlns:xi="http://www.w3.org/2001/XInclude" /> -->
+  <xi:include href="Preface.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
+  <xi:include href="Chapter_Info.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
   <xi:include href="Chapter_Quick_Start.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
   <xi:include href="Chapter_Lxplus.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
   <xi:include href="Chapter_EOS.xml" xmlns:xi="http://www.w3.org/2001/XInclude" />
