@@ -1,0 +1,125 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<!DOCTYPE chapter PUBLIC "-//OASIS//DTD DocBook XML V4.5//EN" "http://www.oasis-open.org/docbook/xml/4.5/docbookx.dtd" [
+<!ENTITY % BOOK_ENTITIES SYSTEM "SASKE_Users_Guide.ent">
+%BOOK_ENTITIES;
+]>
+<chapter id="chap-Documentation-SASKE_Users_Guide-Start_Login">
+  <title>First login to SASKE</title>
+
+  <para>
+    SASKE uses Kerberos5 for athentification and user can change its password via web interface located
+    <ulink url="https://kdc1.saske.sk">here</ulink>. When you access this web page one should see following window.
+    One should enter own username.
+  </para>
+
+  <figure><title>Login to SASKE</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/login_empty.png"/>
+    </imageobject>
+    <textobject><phrase>Login to SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+  <note>
+    <para>
+      SASKE username is same as your mail username, eg. mvala@saske.sk has 'mvala' username.
+    </para>
+  </note>
+
+  <warning>
+    <para>
+      Currently, we are not synchronized with password database, used by mail and one need to create new password.
+      Note that this password is not changed for mail service.
+    </para>
+  </warning>
+
+  <para>
+    If user cannot login at given web page, user can ask for "first" password by sending mail to mvala@saske.sk or ingrid@saske.sk
+    and one time password will be sent to user. This passwork can be used for first login and system will ask to change password.
+    User should use this "new" password for our services like indico, eos, and others. List of the services is available at
+    <xref linkend="chap-Documentation-SASKE_Users_Guide-Info" />.
+  </para>
+
+
+  <para>
+    Following example shows how user 'zalom' can login with his "first" password and change it to new one.
+    First user will have to login with "first" password as shown bellow
+  </para>
+
+  <figure><title>Login example for user 'zalom'</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/login_zalom.png"/>
+    </imageobject>
+    <textobject><phrase>Login to SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+  <para>
+    When login is successful, user will enter his new password and click "Reset password and Login" button.
+  </para>
+
+  <figure><title>Change (reset) password for user 'zalom'</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/reset_zalom.png"/>
+    </imageobject>
+    <textobject><phrase>Login to SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+  <para>
+    After this action user's password is changed and can be used to login to all services listed at <xref linkend="chap-Documentation-SASKE_Users_Guide-Info" />.
+    For example, user use "indico - Presentations and Meetings" service at <ulink url="http://indico.saske.sk">http://indico.saske.sk</ulink> and
+    login with new password. Here is an example :
+  </para>
+
+  <para>
+    User will enter web page <ulink url="http://indico.saske.sk">http://indico.saske.sk</ulink> and click at "Login" button in upper right corner of given
+    web page shown in next figure.
+  </para>
+
+  <figure><title>Entering "indico" web page and login</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/indico_home.png"/>
+    </imageobject>
+    <textobject><phrase>Indico at SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+  <para>
+    Then user enters its username and password and user should be able to login. User 'zalom' would do following
+    web page shown in next figure.
+  </para>
+
+  <figure><title>User 'zalom' is logging to "indico" service</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/indico_login_zalom.png"/>
+    </imageobject>
+    <textobject><phrase>Indico at SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+  <para>
+    When user successfuly logged in to "indico" service, he should see his name in upper right corner of the web page, as shown in
+    next figure
+  </para>
+
+
+  <figure><title>User 'zalom' is successfuly logged in to "indico" service</title>
+  <mediaobject>
+    <imageobject>
+      <imagedata fileref="images/Start_Login/indico_zalom_login_OK.png"/>
+    </imageobject>
+    <textobject><phrase>Indico at SASKE</phrase></textobject>
+  </mediaobject>
+  </figure>
+
+
+
+
+
+</chapter>
